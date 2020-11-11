@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_background">#191926</color>
+    <color name="inscription_color">#6D6D80</color>
+    <color name="type_of_film_color">#FF3466</color>
+    <color name="review_counter_color">#6D6D80</color>
+    <color name="storyline_inspection_color">#ECECEC</color>
+    <color name="little_bit_white_color">#ECECEC</color>
 </resources>
