@@ -10,22 +10,13 @@
     android:layout_height="300dp"
     android:id="@+id/mainBody">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/backgroundHolder"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/movie_backgound_avengers"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +57,7 @@
             android:text="@string/type_of_film_avengers"
             android:textColor="#FF3466"
             android:textSize="8sp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,9 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.77" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintGuide_percent="0.64" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -118,11 +108,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/film_name_avengers_end_game"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView

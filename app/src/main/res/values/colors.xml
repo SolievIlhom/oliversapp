@@ -14,4 +14,5 @@
     <color name="storyline_inspection_color">#ECECEC</color>
     <color name="little_bit_white_color">#ECECEC</color>
     <color name="background_main_body">#222232</color>
+    <color name="background_main_activity">#191926</color>
 </resources>
