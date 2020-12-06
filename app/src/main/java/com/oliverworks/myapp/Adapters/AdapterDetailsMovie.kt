@@ -12,28 +12,39 @@ import com.oliverworks.myapp.Classes.Actor
 import com.oliverworks.myapp.R
 
 
-class AdapterDetailsMovie(val context: Context) : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>() {
+class AdapterDetailsMovie : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>() {
     private var listActors: List<Actor> = mutableListOf()
-    fun bindActors(list :List<Actor>) {
-        listActors = list
-        notifyDataSetChanged()
-    }
+    private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view  : View = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_actor,parent,false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.view_holder_actor, parent, false)
+        context = view.context
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nameActor.text = listActors[position].name
-        holder.avatar.setImageDrawable(AppCompatResources.getDrawable(context, listActors[position].pathAvatar))
+        with(holder) {
+            nameActor.text = listActors[position].name
+            avatar.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    context,
+                    listActors[position].pathAvatar
+                )
+            )
+        }
     }
 
-    override fun getItemCount(): Int {
-     return listActors.size
+    override fun getItemCount(): Int = listActors.size
+
+    fun bindActors(list: List<Actor>) {
+        listActors = list
+        notifyDataSetChanged()
     }
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val avatar : ImageView = itemView.findViewById(R.id.imageViewViewHolderActorFace)
+
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val avatar: ImageView = itemView.findViewById(R.id.imageViewViewHolderActorFace)
         val nameActor: TextView = itemView.findViewById(R.id.textViewViewHolderActorName)
     }
 }

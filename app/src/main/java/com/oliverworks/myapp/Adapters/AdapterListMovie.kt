@@ -7,64 +7,67 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.oliverworks.myapp.Classes.Movie
 import com.oliverworks.myapp.R
 
-class AdapterListMovie(private val context : Context) : RecyclerView.Adapter<ViewHolder>() {
-    private var movies = mutableListOf<Movie>()
-    fun bindFilms(newListOfFilms: List<Movie>){
-        movies = newListOfFilms as MutableList<Movie>
+
+class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
+    RecyclerView.Adapter<AdapterListMovie.MovieViewHolder>() {
+    private var movies = listOf<Movie>()
+    private lateinit var context: Context
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
+        context = view.context
+        return MovieViewHolder(view, onItemClickListener)
+    }
+
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val movie: Movie = movies[position]
+        with(holder) {
+            name.text = movie.name
+            rating.rating = movie.rating
+            reviews.text = "${movie.reviews} REVIEWS"
+            if (movie.like) {
+                like.setImageDrawable(getDrawable(context, R.drawable.like_true_icon))
+            } else {
+                like.setImageDrawable(getDrawable(context, R.drawable.like_icon))
+            }
+            posterPath.setImageDrawable(getDrawable(context, movie.posterPath))
+            limitAge.text = "${movie.limitAge} +"
+            durationOfFilm.text = "${movie.durationMin}MIN"
+            tag.text = movie.tag
+        }
+    }
+
+    override fun getItemCount(): Int = movies.size
+
+    fun bindFilms(newListOfFilms: List<Movie>) {
+        movies = newListOfFilms
         notifyDataSetChanged()
     }
-    private lateinit var listener :OnItemClickListener
-    interface OnItemClickListener{
-        fun onItemClick(position:Int)
-    }
-    fun setOnItemClickListener (listener : OnItemClickListener){
-        this.listener = listener
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
-        return ViewHolder(view,context,listener)
-    }
+    class MovieViewHolder(itemView: View, onItemClickListener: (Int) -> Unit) :
+        RecyclerView.ViewHolder(itemView) {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie : Movie = movies[position]
-        holder.name.text = movie.name
-        holder.rating.setRating(movie.rating)
-        holder.reviews.text = movie.reviews.toString() + " REVIEWS"
-        if(movie.like){
-            holder.like.setImageDrawable(getDrawable(context,R.drawable.like_true_icon))
-        }else {
-            holder.like.setImageDrawable(getDrawable(context,R.drawable.like_icon))
+        init {
+            itemView.setOnClickListener {
+                onItemClickListener(adapterPosition)
+            }
         }
-        holder.posterPath.setImageDrawable(getDrawable(context, movie.posterPath))
-        holder.limitAge.text = movie.limitAge.toString() + "+"
-        holder.durationOfFilm.text = movie.durationMin.toString() + "MIN"
-        holder.tag.text = movie.tag
-    }
 
-    override fun getItemCount(): Int {
-     return movies.size
+        val name: TextView = itemView.findViewById(R.id.textViewNameOfFilmHolder)
+        val rating: RatingBar = itemView.findViewById(R.id.ratingBar)
+        val reviews: TextView = itemView.findViewById(R.id.textViewReviewsOfFilm)
+        val like: ImageView = itemView.findViewById(R.id.likeIconOfFilm)
+        val limitAge: TextView = itemView.findViewById(R.id.filmLimitAge)
+        val durationOfFilm: TextView = itemView.findViewById(R.id.textViewDurationOfFilm)
+        val tag: TextView = itemView.findViewById(R.id.textViewViewHolderTag)
+        val posterPath: ImageView = itemView.findViewById(R.id.backgroundHolder)
+
     }
 }
-class ViewHolder(itemView: View,context: Context,listener : AdapterListMovie.OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
-    init {
-        itemView.setOnClickListener {
-            Toast.makeText(context,"Hello from $adapterPosition" ,Toast.LENGTH_LONG).show()
-            listener.onItemClick(adapterPosition)
-        }
-    }
-    val name: TextView = itemView.findViewById(R.id.textViewNameOfFilmHolder)
-    val rating: RatingBar = itemView.findViewById(R.id.ratingBar)
-    val reviews: TextView = itemView.findViewById(R.id.textViewReviewsOfFilm)
-    val like:ImageView = itemView.findViewById(R.id.likeIconOfFilm)
-    val limitAge: TextView = itemView.findViewById(R.id.filmLimitAge)
-    val durationOfFilm: TextView = itemView.findViewById(R.id.textViewDurationOfFilm)
-    val tag: TextView = itemView.findViewById(R.id.textViewViewHolderTag)
-    val posterPath:  ImageView = itemView.findViewById(R.id.backgroundHolder)
-}
+
+

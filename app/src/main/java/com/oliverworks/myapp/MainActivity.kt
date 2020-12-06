@@ -11,10 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction()
-            .apply {
-                add(R.id.mainActivityBackground, FragmentMoviesList())
-               //addToBackStack(null)
-                commit()
-            }
+            .add(R.id.mainActivityBackground, FragmentMoviesList())
+            .commit()
     }
 }

@@ -2,97 +2,97 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/border_of_movie_list"
-    android:layout_marginStart="16dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginTop="8dp"
+    android:id="@+id/mainBody"
     android:layout_width="170dp"
     android:layout_height="300dp"
-    android:id="@+id/mainBody">
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/border_of_movie_list">
 
+    <ImageView
+        android:id="@+id/backgroundHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/movie_backgound_avengers"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/backgroundHolder"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/movie_backgound_avengers"
-            app:layout_constraintBottom_toBottomOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+    <ImageView
+        android:id="@+id/likeIconOfFilm"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/like_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/likeIconOfFilm"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/like_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/filmLimitAge"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/shape_button_13"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
 
-        <TextView
-            android:id="@+id/filmLimitAge"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/shape_button_13"
-            android:gravity="center"
-            android:text="@string/age_limit_inscription"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_12_sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/age_limit_inscription" />
 
-        <TextView
-            android:id="@+id/textViewViewHolderTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/type_of_film_avengers"
-            android:textColor="#FF3466"
-            android:textSize="8sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.043"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            tools:ignore="SmallSp,SpUsage" />
+    <TextView
+        android:id="@+id/textViewViewHolderTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#FF3466"
+        android:textSize="8sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:ignore="SmallSp,SpUsage"
+        tools:text="@string/type_of_film_avengers" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:rating="4"
-            app:layout_constraintStart_toStartOf="@+id/textViewViewHolderTag"
-            app:layout_constraintTop_toBottomOf="@+id/textViewViewHolderTag" />
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:rating="4"
+        app:layout_constraintStart_toStartOf="@+id/textViewViewHolderTag"
+        app:layout_constraintTop_toBottomOf="@+id/textViewViewHolderTag" />
 
-        <TextView
-            android:id="@+id/textViewReviewsOfFilm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/reviews_of_film_avengers"
-            android:textColor="#6D6D80"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ratingBar"
-            app:layout_constraintTop_toTopOf="@+id/ratingBar"
-            tools:ignore="SmallSp" />
+    <TextView
+        android:id="@+id/textViewReviewsOfFilm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="#6D6D80"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+        tools:ignore="SmallSp"
+        tools:text="@string/reviews_of_film_avengers" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.64" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -106,22 +106,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/film_name_avengers_end_game"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:text="@string/film_name_avengers_end_game" />
 
     <TextView
         android:id="@+id/textViewDurationOfFilm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/duration_of_film_avengers"
+        android:textColor="@android:color/darker_gray"
         android:textSize="8sp"
         android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="@+id/textViewNameOfFilmHolder"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameOfFilmHolder"
-        tools:ignore="SmallSp" />
+        tools:ignore="SmallSp"
+        tools:text="@string/duration_of_film_avengers" />
 </androidx.constraintlayout.widget.ConstraintLayout>

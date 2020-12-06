@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
@@ -27,11 +26,11 @@
             android:id="@+id/backInscription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_16_dp"
-            android:layout_marginTop="@dimen/space_60_dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
             android:text="@string/back_inscription"
             android:textColor="@color/inscription_color"
-            android:textSize="@dimen/size_12_sp"
+            android:textSize="12sp"
             app:drawableLeftCompat="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,12 +39,12 @@
             android:id="@+id/textViewAgeLimit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_16_dp"
-            android:layout_marginTop="@dimen/space_120_dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/textview_background"
             android:gravity="center_horizontal|center_vertical"
-            android:paddingTop="@dimen/space_4_dp"
-            android:paddingBottom="@dimen/space_4_dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:text="@string/age_limit_inscription"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +61,7 @@
             android:shadowRadius="15"
             android:text="@string/film_name_avengers_end_game"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_40_sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textViewAgeLimit"
             app:layout_constraintTop_toBottomOf="@+id/textViewAgeLimit" />
@@ -71,10 +70,10 @@
             android:id="@+id/textViewTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_4_dp"
+            android:layout_marginTop="4dp"
             android:text="@string/type_of_film_avengers"
             android:textColor="@color/type_of_film_color"
-            android:textSize="@dimen/size_14_sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/nameFilm"
             app:layout_constraintTop_toBottomOf="@+id/nameFilm" />
 
@@ -85,7 +84,7 @@
             android:layout_marginStart="120dp"
             android:text="@string/reviews_of_film_avengers"
             android:textColor="@color/review_counter_color"
-            android:textSize="@dimen/size_14_sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ratingBarFragmentDeatails" />
@@ -109,7 +108,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/storyline_inspection"
             android:textColor="@color/storyline_inspection_color"
-            android:textSize="@dimen/size_14_sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/ratingBarFragmentDeatails"
             app:layout_constraintTop_toBottomOf="@+id/ratingBarFragmentDeatails" />
@@ -118,9 +117,9 @@
             android:id="@+id/textViewShortlineOfFilm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_4_dp"
+            android:layout_marginTop="4dp"
             android:alpha="0.75"
-            android:paddingEnd="@dimen/space_16_dp"
+            android:paddingEnd="16dp"
             android:text="@string/storyline_of_film_avengers"
             android:textColor="#FFFFFF"
             android:textStyle="normal"
@@ -131,7 +130,7 @@
             android:id="@+id/castInspection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_24_dp"
+            android:layout_marginTop="24dp"
             android:text="@string/cast_inspection"
             android:textColor="@color/white"
             android:textStyle="bold"
