@@ -6,23 +6,31 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.academy.fundamentals.homework.features.data.Movie
 import com.oliverworks.myapp.Adapters.AdapterListMovie
 import com.oliverworks.myapp.Classes.FillList
 import com.oliverworks.myapp.Extras.Words
 import com.oliverworks.myapp.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterListMovie
     private lateinit var textViewLabel: TextView
-    private val list = FillList.getMovies()
+    private var list = listOf<Movie>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        recyclerView = view.findViewById(R.id.recyclerView)
+        CoroutineScope(Dispatchers.Main).launch {
+            list = FillList.getMovies(view.context)
+            initRecycler(view)
+        }
         textViewLabel = view.findViewById(R.id.textViewLabelMovieLList)
-        initRecycler(view)
     }
 
     fun initRecycler(view: View) {
-        recyclerView = view.findViewById(R.id.recyclerView)
         adapter = AdapterListMovie {
             goToDetailsFragment(it)
         }

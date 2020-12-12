@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
-import com.oliverworks.myapp.Classes.Actor
+import com.android.academy.fundamentals.homework.features.data.Actor
+import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
 
 
@@ -25,26 +25,24 @@ class AdapterDetailsMovie : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            nameActor.text = listActors[position].name
-            avatar.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    context,
-                    listActors[position].pathAvatar
-                )
-            )
+            val actor: Actor = listActors[position]
+            nameActor.text = actor.name
+            Glide.with(context)
+                .load(actor.picture)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(avatar)
         }
     }
 
     override fun getItemCount(): Int = listActors.size
 
-    fun bindActors(list: List<Actor>) {
-        listActors = list
-        notifyDataSetChanged()
-    }
-
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val avatar: ImageView = itemView.findViewById(R.id.imageViewViewHolderActorFace)
         val nameActor: TextView = itemView.findViewById(R.id.textViewViewHolderActorName)
+    }
+
+    fun bindActors(list: List<Actor>) {
+        listActors = list
+        notifyDataSetChanged()
     }
 }

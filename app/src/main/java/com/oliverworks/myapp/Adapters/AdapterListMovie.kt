@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
-import com.oliverworks.myapp.Classes.Movie
+import com.android.academy.fundamentals.homework.features.data.Genre
+import com.android.academy.fundamentals.homework.features.data.Movie
+import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
 
 
@@ -27,18 +28,16 @@ class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie: Movie = movies[position]
         with(holder) {
-            name.text = movie.name
-            rating.rating = movie.rating
-            reviews.text = "${movie.reviews} REVIEWS"
-            if (movie.like) {
-                like.setImageDrawable(getDrawable(context, R.drawable.like_true_icon))
-            } else {
-                like.setImageDrawable(getDrawable(context, R.drawable.like_icon))
-            }
-            posterPath.setImageDrawable(getDrawable(context, movie.posterPath))
-            limitAge.text = "${movie.limitAge} +"
-            durationOfFilm.text = "${movie.durationMin}MIN"
-            tag.text = movie.tag
+            name.text = movie.title
+            rating.rating = movie.ratings / 2
+            reviews.text = "It is revies"
+            Glide.with(context)
+                .load(movie.poster)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(posterPath)
+            limitAge.text = "${movie.adult} +"
+            durationOfFilm.text = "${movie.runtime}MIN"
+            tag.text = Genre.toStringName(movie.genres)
         }
     }
 
@@ -66,7 +65,6 @@ class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
         val durationOfFilm: TextView = itemView.findViewById(R.id.textViewDurationOfFilm)
         val tag: TextView = itemView.findViewById(R.id.textViewViewHolderTag)
         val posterPath: ImageView = itemView.findViewById(R.id.backgroundHolder)
-
     }
 }
 
