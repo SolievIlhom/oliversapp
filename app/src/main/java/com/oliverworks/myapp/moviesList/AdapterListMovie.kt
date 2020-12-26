@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Adapters
+package com.oliverworks.myapp.moviesList
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -29,14 +29,14 @@ class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
         val movie: Movie = movies[position]
         with(holder) {
             name.text = movie.title
-            rating.rating = movie.ratings / 2
-            reviews.text = "It is revies"
+            rating.rating = movie.startRating
+            reviews.text = context.getString(R.string.reviews_label)
             Glide.with(context)
                 .load(movie.poster)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(posterPath)
-            limitAge.text = "${movie.adult} +"
-            durationOfFilm.text = "${movie.runtime}MIN"
+            limitAge.text = context.getString(R.string.limitage_label_view_holder,movie.adult.toString())
+            durationOfFilm.text = context.getString(R.string.duration_of_film_label_view_holder,movie.runtime.toString())
             tag.text = Genre.toStringName(movie.genres)
         }
     }
