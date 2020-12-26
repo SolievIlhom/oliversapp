@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Fragments
+package com.oliverworks.myapp.moviesList
 
 import android.os.Bundle
 import android.view.View
@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.academy.fundamentals.homework.features.data.Movie
-import com.oliverworks.myapp.Adapters.AdapterListMovie
-import com.oliverworks.myapp.Classes.FillList
-import com.oliverworks.myapp.Extras.Words
 import com.oliverworks.myapp.R
+import com.oliverworks.myapp.extras.FillList
+import com.oliverworks.myapp.extras.Words
+import com.oliverworks.myapp.moviesDetails.FragmentMoviesDetails
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

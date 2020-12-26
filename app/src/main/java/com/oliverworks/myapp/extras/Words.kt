@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Extras
+package com.oliverworks.myapp.extras
 
 object Words {
     const val MOVIE: String = "movie"

@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Fragments
+package com.oliverworks.myapp.moviesDetails
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.academy.fundamentals.homework.features.data.Genre
 import com.android.academy.fundamentals.homework.features.data.Movie
 import com.bumptech.glide.Glide
-import com.oliverworks.myapp.Adapters.AdapterDetailsMovie
 import com.oliverworks.myapp.R
 
 

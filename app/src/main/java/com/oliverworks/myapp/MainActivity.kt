@@ -2,7 +2,7 @@ package com.oliverworks.myapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.oliverworks.myapp.Fragments.FragmentMoviesList
+import com.oliverworks.myapp.moviesList.FragmentMoviesList
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Classes
+package com.oliverworks.myapp.extras
 
 import android.content.Context
 import com.android.academy.fundamentals.homework.features.data.Movie

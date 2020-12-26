@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.Adapters
+package com.oliverworks.myapp.moviesList
 
 import android.content.Context
 import android.view.LayoutInflater
