@@ -24,7 +24,7 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.recyclerView)
         CoroutineScope(Dispatchers.Main).launch {
-            list = FillList.getMovies(view.context)
+            list = FillList.getMovies(requireContext())
             initRecycler(view)
         }
         textViewLabel = view.findViewById(R.id.textViewLabelMovieLList)

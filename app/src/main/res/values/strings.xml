@@ -14,4 +14,7 @@
     <string name="name_chris_hemsworth_actor">Chris Hemsworth</string>
     <string name="movies_list_label">Movies list</string>
     <string name="duration_of_film_avengers">137 min</string>
+    <string name="reviews_label">It is reviews</string>
+    <string name="limitage_label_view_holder">%1$s +</string>
+    <string name="duration_of_film_label_view_holder">%1$s MIN</string>
 </resources>

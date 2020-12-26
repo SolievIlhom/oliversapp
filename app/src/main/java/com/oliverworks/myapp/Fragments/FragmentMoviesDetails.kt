@@ -16,7 +16,7 @@ import com.oliverworks.myapp.R
 
 
 class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
-    //Views
+
     private lateinit var textViewFilmName: TextView
     private lateinit var textViewAgeLimit: TextView
     private lateinit var textViewFilmReview: TextView
@@ -26,7 +26,6 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var imageViewBackdrop: ImageView
 
-    //Adapter
     private lateinit var adapter: AdapterDetailsMovie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +49,7 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
         textViewTag.text = Genre.toStringName(movie.genres)
         textViewShortlineOfFilm.text = movie.overview
         //Ratings
-        ratingBar.rating = movie.ratings / 2
+        ratingBar.rating = movie.startRating
         //images
         Glide.with(this)
             .load(movie.backdrop)
