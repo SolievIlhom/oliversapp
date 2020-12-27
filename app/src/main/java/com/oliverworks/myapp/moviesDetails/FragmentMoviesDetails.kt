@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
 import com.oliverworks.myapp.data.classes.Genre
 import com.oliverworks.myapp.data.classes.Movie
+import com.oliverworks.myapp.moviesDetails.adapter.AdapterDetailsMovie
 
 
 class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
@@ -44,8 +45,7 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
         val movie: Movie = getDataFromFragmentDetails()
         setDataToFragment(movie)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
     }
 
     fun getDataFromFragmentDetails(): Movie = arguments?.getParcelable(ARG_MOVIE)!!
