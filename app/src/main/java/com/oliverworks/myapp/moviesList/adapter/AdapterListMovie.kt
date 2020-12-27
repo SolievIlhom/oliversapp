@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.moviesList
+package com.oliverworks.myapp.moviesList.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,21 +8,21 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.android.academy.fundamentals.homework.features.data.Genre
-import com.android.academy.fundamentals.homework.features.data.Movie
 import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
+import com.oliverworks.myapp.data.classes.Genre
+import com.oliverworks.myapp.data.classes.Movie
 
 
-class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
+class AdapterListMovie(private val onItemClickListener: (Movie) -> Unit) :
     RecyclerView.Adapter<AdapterListMovie.MovieViewHolder>() {
-    private var movies = listOf<Movie>()
+    var movies = listOf<Movie>()
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
         context = view.context
-        return MovieViewHolder(view, onItemClickListener)
+        return MovieViewHolder(view, onItemClickListener,movies)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -48,12 +48,10 @@ class AdapterListMovie(private val onItemClickListener: (Int) -> Unit) :
         notifyDataSetChanged()
     }
 
-    class MovieViewHolder(itemView: View, onItemClickListener: (Int) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
-
+    class MovieViewHolder(itemView: View, onItemClickListener: (Movie) -> Unit, movies : List<Movie>) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
-                onItemClickListener(adapterPosition)
+                onItemClickListener(movies[adapterPosition])
             }
         }
 

@@ -5,13 +5,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.academy.fundamentals.homework.features.data.Genre
-import com.android.academy.fundamentals.homework.features.data.Movie
 import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
+import com.oliverworks.myapp.data.classes.Genre
+import com.oliverworks.myapp.data.classes.Movie
 
 
 class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
@@ -24,22 +25,30 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     private lateinit var ratingBar: RatingBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var imageViewBackdrop: ImageView
+    companion object{
+        private val ARG_MOVIE = "movie"
 
+        fun newInstance(movie: Movie): FragmentMoviesDetails {
+            return FragmentMoviesDetails().apply {
+                arguments = bundleOf(
+                    ARG_MOVIE to movie
+                )
+            }
+        }
+    }
     private lateinit var adapter: AdapterDetailsMovie
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         findIdAndSetFields(view)
         val movie: Movie = getDataFromFragmentDetails()
         setDataToFragment(movie)
-        val listActors = movie.actors
-        adapter = AdapterDetailsMovie()
-        adapter.bindActors(listActors)
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    fun getDataFromFragmentDetails(): Movie = arguments?.getParcelable("movie")!!
+    fun getDataFromFragmentDetails(): Movie = arguments?.getParcelable(ARG_MOVIE)!!
     fun setDataToFragment(movie: Movie) {
         //Texts
         textViewFilmName.text = movie.title
@@ -54,6 +63,10 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
             .load(movie.backdrop)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(imageViewBackdrop)
+
+        val listActors = movie.actors
+        adapter = AdapterDetailsMovie()
+        adapter.bindActors(listActors)
     }
 
     fun findIdAndSetFields(view: View) {

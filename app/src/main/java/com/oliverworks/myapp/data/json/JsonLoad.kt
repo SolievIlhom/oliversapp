@@ -1,6 +1,9 @@
 package com.android.academy.fundamentals.homework.features.data
 
 import android.content.Context
+import com.oliverworks.myapp.data.classes.Actor
+import com.oliverworks.myapp.data.classes.Genre
+import com.oliverworks.myapp.data.classes.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName

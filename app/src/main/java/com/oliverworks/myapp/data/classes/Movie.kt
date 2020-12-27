@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.homework.features.data
+package com.oliverworks.myapp.data.classes
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
