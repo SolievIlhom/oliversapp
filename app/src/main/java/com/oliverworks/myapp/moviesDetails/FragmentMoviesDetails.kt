@@ -26,17 +26,6 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     private lateinit var ratingBar: RatingBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var imageViewBackdrop: ImageView
-    companion object{
-        private val ARG_MOVIE = "movie"
-
-        fun newInstance(movie: Movie): FragmentMoviesDetails {
-            return FragmentMoviesDetails().apply {
-                arguments = bundleOf(
-                    ARG_MOVIE to movie
-                )
-            }
-        }
-    }
     private lateinit var adapter: AdapterDetailsMovie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +37,7 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    fun getDataFromFragmentDetails(): Movie = arguments?.getParcelable(ARG_MOVIE)!!
+    fun getDataFromFragmentDetails(): Movie = requireArguments().getParcelable(ARG_MOVIE)!!
     fun setDataToFragment(movie: Movie) {
         //Texts
         textViewFilmName.text = movie.title
@@ -63,10 +52,8 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
             .load(movie.backdrop)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(imageViewBackdrop)
-
-        val listActors = movie.actors
         adapter = AdapterDetailsMovie()
-        adapter.bindActors(listActors)
+        adapter.bindActors(movie.actors)
     }
 
     fun findIdAndSetFields(view: View) {
@@ -78,6 +65,17 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
         textViewShortlineOfFilm = view.findViewById(R.id.textViewShortlineOfFilm)
         ratingBar = view.findViewById(R.id.ratingBarFragmentDeatails)
         imageViewBackdrop = view.findViewById(R.id.imageViewBackdropFilmDetails)
+    }
+    companion object{
+        private val ARG_MOVIE = "movie"
+
+        fun newInstance(movie: Movie): FragmentMoviesDetails {
+            return FragmentMoviesDetails().apply {
+                arguments = bundleOf(
+                    ARG_MOVIE to movie
+                )
+            }
+        }
     }
 
 }

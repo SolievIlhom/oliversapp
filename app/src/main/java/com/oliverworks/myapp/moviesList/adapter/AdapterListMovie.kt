@@ -16,7 +16,9 @@ import com.oliverworks.myapp.data.classes.Movie
 
 class AdapterListMovie(private val onItemClickListener: (Movie) -> Unit) :
     RecyclerView.Adapter<AdapterListMovie.MovieViewHolder>() {
-    var movies = listOf<Movie>()
+
+    private var movies = listOf<Movie>()
+
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view: View =

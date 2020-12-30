@@ -16,7 +16,9 @@ import ru.petrgostev.myfirstproject.data.jsоn.MoviesGet
 
 class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
 
-    private val parentRouter: Router? get() = (activity as? Router)
+    private val parentRouter: Router? by lazy {
+        (activity as? Router)
+    }
     private lateinit var recyclerView: RecyclerView
     private val viewModel: ViewModelListMovies by viewModels {
         ViewModelFactoryMoviesList(
@@ -43,16 +45,15 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
         initViews(view)
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
     }
-
     fun updateAdapter(movies: List<Movie>) {
         adapter.bindFilms(movies)
     }
-
     fun initViews(view: View) {
         recyclerView = view.findViewById(R.id.recyclerView)
-
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(view.context, 2)
+        recyclerView.layoutManager = GridLayoutManager(view.context, numberOfCagesRecyclerView)
     }
-
+    companion object{
+        private const val numberOfCagesRecyclerView = 2
+    }
 }
