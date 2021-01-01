@@ -1,5 +1,6 @@
-package com.oliverworks.myapp.moviesDetails
+package com.oliverworks.myapp.fragments.moviesDetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -11,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
-import com.oliverworks.myapp.data.classes.Genre
-import com.oliverworks.myapp.data.classes.Movie
-import com.oliverworks.myapp.moviesDetails.adapter.AdapterDetailsMovie
+import com.oliverworks.myapp.data.pojo.moviesDetails.MovieDetails
 
 
 class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
@@ -26,38 +25,40 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     private lateinit var ratingBar: RatingBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var imageViewBackdrop: ImageView
-    private lateinit var adapter: AdapterDetailsMovie
-
+    private lateinit var adapter: AdapterDetailsMovieActors
+    private lateinit var contextDetailsFragment: Context
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        findIdAndSetFields(view)
-        val movie: Movie = getDataFromFragmentDetails()
-        setDataToFragment(movie)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+        initViews(view)
+        setDataToFragment(getDataFromFragmentDetails())
     }
 
-    fun getDataFromFragmentDetails(): Movie = requireArguments().getParcelable(ARG_MOVIE)!!
-    fun setDataToFragment(movie: Movie) {
-        //Texts
-        textViewFilmName.text = movie.title
-        textViewAgeLimit.text = "${movie.adult}+"
-        textViewFilmReview.text = "${movie.runtime} REVIEWS"
-        textViewTag.text = Genre.toStringName(movie.genres)
-        textViewShortlineOfFilm.text = movie.overview
-        //Ratings
-        ratingBar.rating = movie.startRating
-        //images
-        Glide.with(this)
-            .load(movie.backdrop)
-            .placeholder(R.drawable.ic_launcher_foreground)
-            .into(imageViewBackdrop)
-        adapter = AdapterDetailsMovie()
-        adapter.bindActors(movie.actors)
+    private fun getDataFromFragmentDetails(): MovieDetails =
+        requireArguments().getParcelable(ARG_MOVIE)!!
+
+    private fun setDataToFragment(movie: MovieDetails) {
+        with(movie) {
+            textViewFilmName.text = movie.title
+            textViewAgeLimit.text = if (adult == true) "16+" else "13+"
+            textViewFilmReview.text = "${runtime} REVIEWS"
+            textViewTag.text = genres?.map { it.name }.toString()
+            textViewShortlineOfFilm.text = overview
+            ratingBar.rating = (voteAverage!! / 2).toFloat()
+            Glide.with(contextDetailsFragment)
+                .load(getImageSizeBackdrop500())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(imageViewBackdrop)
+            adapter = AdapterDetailsMovieActors()
+        }
     }
 
-    fun findIdAndSetFields(view: View) {
+    private fun initViews(view: View) {
+        contextDetailsFragment = view.context
         recyclerView = view.findViewById(R.id.recyclerViewActors)
+        adapter = AdapterDetailsMovieActors()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager =
+            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
         textViewFilmName = view.findViewById(R.id.nameFilm)
         textViewAgeLimit = view.findViewById(R.id.textViewAgeLimit)
         textViewFilmReview = view.findViewById(R.id.textViewFilmReview)
@@ -66,10 +67,11 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
         ratingBar = view.findViewById(R.id.ratingBarFragmentDeatails)
         imageViewBackdrop = view.findViewById(R.id.imageViewBackdropFilmDetails)
     }
-    companion object{
+
+    companion object {
         private val ARG_MOVIE = "movie"
 
-        fun newInstance(movie: Movie): FragmentMoviesDetails {
+        fun newInstance(movie: MovieDetails): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = bundleOf(
                     ARG_MOVIE to movie
