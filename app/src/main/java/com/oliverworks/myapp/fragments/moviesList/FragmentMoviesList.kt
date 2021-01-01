@@ -1,34 +1,22 @@
-package com.oliverworks.myapp.moviesList
+package com.oliverworks.myapp.fragments.moviesList
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliverworks.myapp.R
 import com.oliverworks.myapp.Router
-import com.oliverworks.myapp.data.classes.Movie
-import com.oliverworks.myapp.moviesList.adapter.AdapterListMovie
-import com.oliverworks.myapp.moviesList.viewModel.ViewModelFactoryMoviesList
-import com.oliverworks.myapp.moviesList.viewModel.ViewModelListMovies
-import ru.petrgostev.myfirstproject.data.jsоn.MoviesGet
+import com.oliverworks.myapp.data.pojo.moviesDetails.MovieDetails
 
 class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
 
-    private val parentRouter: Router? by lazy {
-        (activity as? Router)
-    }
+    private val parentRouter: Router? by lazy { (activity as? Router) }
     private lateinit var recyclerView: RecyclerView
-    private val viewModel: ViewModelListMovies by viewModels {
-        ViewModelFactoryMoviesList(
-            MoviesGet(
-                requireContext()
-            )
-        )
-    }
+
+    private val viewModel: ViewModelListMovies by lazy { ViewModelListMovies() }
     private val adapter: AdapterListMovie by lazy {
-        AdapterListMovie { movie: Movie ->
+        AdapterListMovie { movie: MovieDetails ->
             parentRouter?.openMoviesDetailsFragment(
                 movie
             )
@@ -45,15 +33,19 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
         initViews(view)
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
     }
-    fun updateAdapter(movies: List<Movie>) {
+
+    private fun updateAdapter(movies: List<MovieDetails>) {
         adapter.bindFilms(movies)
     }
-    fun initViews(view: View) {
+
+    private fun initViews(view: View) {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(view.context, numberOfCagesRecyclerView)
     }
-    companion object{
+
+    companion object {
         private const val numberOfCagesRecyclerView = 2
     }
 }
+

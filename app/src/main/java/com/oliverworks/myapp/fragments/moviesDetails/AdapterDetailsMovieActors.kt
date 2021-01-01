@@ -1,4 +1,4 @@
-package com.oliverworks.myapp.moviesDetails.adapter
+package com.oliverworks.myapp.fragments.moviesDetails
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.oliverworks.myapp.R
-import com.oliverworks.myapp.data.classes.Actor
+import com.oliverworks.myapp.data.pojo.actor.Actor
 
 
-class AdapterDetailsMovie : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>() {
+class AdapterDetailsMovieActors : RecyclerView.Adapter<AdapterDetailsMovieActors.ViewHolder>() {
     private var listActors: List<Actor> = mutableListOf()
     private lateinit var context: Context
 
@@ -28,7 +28,7 @@ class AdapterDetailsMovie : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>
             val actor: Actor = listActors[position]
             nameActor.text = actor.name
             Glide.with(context)
-                .load(actor.picture)
+                .load(actor.getProfilePathW300())
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(avatar)
         }
@@ -41,8 +41,4 @@ class AdapterDetailsMovie : RecyclerView.Adapter<AdapterDetailsMovie.ViewHolder>
         val nameActor: TextView = itemView.findViewById(R.id.textViewViewHolderActorName)
     }
 
-    fun bindActors(list: List<Actor>) {
-        listActors = list
-        notifyDataSetChanged()
-    }
 }
