@@ -1,16 +1,11 @@
 package com.oliverworks.myapp.data.pojo.movie
 
-import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 
-class Dates {
-
+class Dates (
     @SerializedName("maximum")
-    @Expose
-    var maximum: String? = null
+    var maximum: String = "",
 
     @SerializedName("minimum")
-    @Expose
-    var minimum: String? = null
-}
+    var minimum: String = ""
+)

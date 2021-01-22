@@ -17,8 +17,8 @@ class AdapterListMovie(private val onItemClickListener: (MovieDetails) -> Unit) 
     RecyclerView.Adapter<AdapterListMovie.MovieViewHolder>() {
 
     private var movies = listOf<MovieDetails>()
-
     private lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
@@ -30,7 +30,7 @@ class AdapterListMovie(private val onItemClickListener: (MovieDetails) -> Unit) 
         val movie: MovieDetails = movies[position]
         with(holder) {
             name.text = movie.title
-            rating.rating = movie.voteAverage?.toFloat()!! / 2
+            rating.rating = movie.voteAverage.toFloat() / 2
             reviews.text = context.getString(R.string.reviews_label)
             Glide.with(context)
                 .load(movie.getImageSizePoster500())

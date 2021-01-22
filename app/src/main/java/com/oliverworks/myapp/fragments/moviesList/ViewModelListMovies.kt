@@ -22,7 +22,7 @@ class ViewModelListMovies() : ViewModel() {
                     RetrofitModule.moviesApi.getMovieDetails(movie_id = it.id)
                 moviesDetails.add(detail)
             }
-            _moviesList.setValue(moviesDetails)
+            _moviesList.postValue(moviesDetails)
         }
     }
 }

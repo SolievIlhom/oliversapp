@@ -1,19 +1,14 @@
 package com.oliverworks.myapp.data.pojo.moviesDetails
 
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Genre(
-
+class Genre(
     @SerializedName("id")
-    @Expose
-    var id: Int? = null,
+    var id: Int = 0,
 
     @SerializedName("name")
-    @Expose
-    var name: String? = null
+    var name: String = ""
 ) : Parcelable

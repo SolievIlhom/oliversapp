@@ -1,6 +1,5 @@
 package com.oliverworks.myapp.fragments.moviesDetails
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -25,8 +24,8 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     private lateinit var ratingBar: RatingBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var imageViewBackdrop: ImageView
-    private lateinit var adapter: AdapterDetailsMovieActors
-    private lateinit var contextDetailsFragment: Context
+    private val adapter: AdapterDetailsMovieActors = AdapterDetailsMovieActors()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
@@ -44,18 +43,15 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
             textViewTag.text = genres?.map { it.name }.toString()
             textViewShortlineOfFilm.text = overview
             ratingBar.rating = (voteAverage!! / 2).toFloat()
-            Glide.with(contextDetailsFragment)
+            Glide.with(requireContext())
                 .load(getImageSizeBackdrop500())
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(imageViewBackdrop)
-            adapter = AdapterDetailsMovieActors()
         }
     }
 
     private fun initViews(view: View) {
-        contextDetailsFragment = view.context
         recyclerView = view.findViewById(R.id.recyclerViewActors)
-        adapter = AdapterDetailsMovieActors()
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
@@ -69,7 +65,8 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     }
 
     companion object {
-        private val ARG_MOVIE = "movie"
+
+        private const val ARG_MOVIE = "movie"
 
         fun newInstance(movie: MovieDetails): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {

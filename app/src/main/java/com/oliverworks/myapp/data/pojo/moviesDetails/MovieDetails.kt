@@ -1,113 +1,86 @@
 package com.oliverworks.myapp.data.pojo.moviesDetails
 
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MovieDetails(
+class MovieDetails(
 
     @SerializedName("adult")
-    @Expose
-    var adult: Boolean? = null,
+    var adult: Boolean = false,
 
     @SerializedName("backdrop_path")
-    @Expose
-    var backdropPath: String? = null,
+    var backdropPath: String = "",
 
     @SerializedName("belongs_to_collection")
-    @Expose
-    var belongsToCollection: BelongsToCollection? = null,
+    var belongsToCollection: BelongsToCollection = BelongsToCollection(),
 
     @SerializedName("budget")
-    @Expose
-    var budget: Int? = null,
+    var budget: Int = 0,
 
     @SerializedName("genres")
-    @Expose
-    var genres: List<Genre>? = null,
+    var genres: List<Genre>? = emptyList(),
 
     @SerializedName("homepage")
-    @Expose
-    var homepage: String? = null,
+    var homepage: String = "",
 
     @SerializedName("id")
-    @Expose
-    var id: Int? = null,
+    var id: Int = 0,
 
     @SerializedName("imdb_id")
-    @Expose
-    var imdbId: String? = null,
+    var imdbId: String = "",
 
     @SerializedName("original_language")
-    @Expose
-    var originalLanguage: String? = null,
+    var originalLanguage: String = "",
 
     @SerializedName("original_title")
-    @Expose
-    var originalTitle: String? = null,
+    var originalTitle: String = "",
 
     @SerializedName("overview")
-    @Expose
-    var overview: String? = null,
+    var overview: String = "",
 
     @SerializedName("popularity")
-    @Expose
-    var popularity: Double? = null,
+    var popularity: Double = 0.0,
 
     @SerializedName("poster_path")
-    @Expose
-    var posterPath: String? = null,
+    var posterPath: String = "",
 
     @SerializedName("production_companies")
-    @Expose
-    var productionCompanies: List<ProductionCompany>? = null,
+    var productionCompanies: List<ProductionCompany> = emptyList(),
 
     @SerializedName("production_countries")
-    @Expose
-    var productionCountries: List<ProductionCountry>? = null,
+    var productionCountries: List<ProductionCountry> = emptyList(),
 
     @SerializedName("release_date")
-    @Expose
-    var releaseDate: String? = null,
+    var releaseDate: String = "",
 
     @SerializedName("revenue")
-    @Expose
-    var revenue: Int? = null,
+    var revenue: Int = 0,
 
     @SerializedName("runtime")
-    @Expose
-    var runtime: Int? = null,
+    var runtime: Int = 0,
 
     @SerializedName("spoken_languages")
-    @Expose
-    var spokenLanguages: List<SpokenLanguage>? = null,
+    var spokenLanguages: List<SpokenLanguage> = emptyList(),
 
     @SerializedName("status")
-    @Expose
-    var status: String? = null,
+    var status: String = "",
 
     @SerializedName("tagline")
-    @Expose
-    var tagline: String? = null,
+    var tagline: String = "",
 
     @SerializedName("title")
-    @Expose
-    var title: String? = null,
+    var title: String = "",
 
     @SerializedName("video")
-    @Expose
-    var video: Boolean? = null,
+    var video: Boolean = false,
 
     @SerializedName("vote_average")
-    @Expose
-    var voteAverage: Double? = null,
+    var voteAverage: Double = 0.0,
 
     @SerializedName("vote_count")
-    @Expose
-    var voteCount: Int? = null
+    var voteCount: Int = 0
 ) : Parcelable {
     fun getImageSizePoster500() = "https://image.tmdb.org/t/p/w500${this.posterPath}"
     fun getImageSizeBackdrop500() = "https://image.tmdb.org/t/p/w500${this.backdropPath}"

@@ -1,68 +1,43 @@
 package com.oliverworks.movieapphomeworktest.pojo.movie
 
-import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 
-class Movie {
-
+class Movie (
     @SerializedName("adult")
-    @Expose
-    var adult: Boolean? = null
+    var adult: Boolean = false,
 
     @SerializedName("backdrop_path")
-    @Expose
-    var backdropPath: String? = null
+    var backdropPath: String = "",
 
     @SerializedName("genre_ids")
-    @Expose
-    var genreIds: List<Int>? = null
-
+    var genreIds: List<Int> = emptyList(),
     @SerializedName("id")
-    @Expose
-    var id: Int? = null
+    var id: Int = 0,
 
-    @SerializedName("original_language")
-    @Expose
-    var originalLanguage: String? = null
-
-    @SerializedName("original_title")
-    @Expose
-    var originalTitle: String? = null
 
     @SerializedName("overview")
-    @Expose
-    var overview: String? = null
+    var overview: String = "",
 
     @SerializedName("popularity")
-    @Expose
-    var popularity: Double? = null
+    var popularity: Double = 0.0,
 
     @SerializedName("poster_path")
-    @Expose
-    var posterPath: String? = null
+    var posterPath: String = "",
 
     @SerializedName("release_date")
-    @Expose
-    var releaseDate: String? = null
+    var releaseDate: String = "",
 
     @SerializedName("title")
-    @Expose
-    var title: String? = null
+    var title: String = "",
 
-    @SerializedName("video")
-    @Expose
-    var video: Boolean? = null
+
 
     @SerializedName("vote_average")
-    @Expose
-    var voteAverage: Double? = null
+    var voteAverage: Double = 0.0,
 
     @SerializedName("vote_count")
-    @Expose
-    var voteCount: Int? = null
-
-
+    var voteCount: Int = 0
+){
     fun getImageSizePoster500() = "https://image.tmdb.org/t/p/w500${this.posterPath}"
     fun getImageSizeBackdrop500() = "https://image.tmdb.org/t/p/w500${this.backdropPath}"
     fun getImageSizeBackdrop300() = "https://image.tmdb.org/t/p/w300${this.backdropPath}"

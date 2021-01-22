@@ -13,8 +13,8 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
 
     private val parentRouter: Router? by lazy { (activity as? Router) }
     private lateinit var recyclerView: RecyclerView
-
     private val viewModel: ViewModelListMovies by lazy { ViewModelListMovies() }
+
     private val adapter: AdapterListMovie by lazy {
         AdapterListMovie { movie: MovieDetails ->
             parentRouter?.openMoviesDetailsFragment(
@@ -41,11 +41,11 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
     private fun initViews(view: View) {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(view.context, numberOfCagesRecyclerView)
+        recyclerView.layoutManager = GridLayoutManager(view.context, NUMBER_OF_CAGES_RECYCLER_VIEW)
     }
 
     companion object {
-        private const val numberOfCagesRecyclerView = 2
+        private const val NUMBER_OF_CAGES_RECYCLER_VIEW = 2
     }
 }
 

@@ -7,11 +7,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ProductionCountry(
-    @SerializedName("iso_3166_1")
-    @Expose
-    var iso31661: String? = null,
-
+class ProductionCountry(
     @SerializedName("name")
     @Expose
     var name: String? = null
