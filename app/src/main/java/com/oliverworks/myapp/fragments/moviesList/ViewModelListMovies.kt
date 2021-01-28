@@ -1,28 +1,37 @@
 package com.oliverworks.myapp.fragments.moviesList
 
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oliverworks.movieapphomeworktest.api.RetrofitModule
 import com.oliverworks.myapp.data.pojo.moviesDetails.MovieDetails
+import com.oliverworks.myapp.database.MovieDatabase
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ViewModelListMovies() : ViewModel() {
+class ViewModelListMovies(application: Application) : AndroidViewModel(application) {
 
-    private var _moviesList = MutableLiveData<List<MovieDetails>>(emptyList())
-    val moviesList: LiveData<List<MovieDetails>> get() = _moviesList
+    private val db by lazy{
+        MovieDatabase.getInstance(application).getDao()
+    }
+
+    val moviesList: LiveData<List<MovieDetails>> = db.getList()
 
     fun loadMovies() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO + handler) {
             val movie = RetrofitModule.moviesApi.getMovies()
-            val moviesDetails: MutableList<MovieDetails> = mutableListOf()
             movie.results?.forEach {
                 val detail: MovieDetails =
                     RetrofitModule.moviesApi.getMovieDetails(movie_id = it.id)
-                moviesDetails.add(detail)
+                db.add(detail)
             }
-            _moviesList.postValue(moviesDetails)
         }
+
     }
+    private val handler = CoroutineExceptionHandler(handler = { _, error ->
+        Log.d("MainViewModel","Something went wrong")
+    })
 }

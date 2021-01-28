@@ -3,6 +3,7 @@ package com.oliverworks.myapp.fragments.moviesList
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliverworks.myapp.R
@@ -13,7 +14,9 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
 
     private val parentRouter: Router? by lazy { (activity as? Router) }
     private lateinit var recyclerView: RecyclerView
-    private val viewModel: ViewModelListMovies by lazy { ViewModelListMovies() }
+    private val viewModel: ViewModelListMovies by lazy {
+        ViewModelProviders.of(this).get(ViewModelListMovies::class.java)
+    }
 
     private val adapter: AdapterListMovie by lazy {
         AdapterListMovie { movie: MovieDetails ->
@@ -23,15 +26,13 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list) {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.loadMovies()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
+        if(savedInstanceState == null) {
+            viewModel.loadMovies()
+        }
     }
 
     private fun updateAdapter(movies: List<MovieDetails>) {

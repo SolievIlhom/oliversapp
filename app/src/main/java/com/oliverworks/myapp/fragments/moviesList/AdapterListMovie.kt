@@ -43,7 +43,8 @@ class AdapterListMovie(private val onItemClickListener: (MovieDetails) -> Unit) 
                 R.string.duration_of_film_label_view_holder,
                 movie.runtime.toString()
             )
-            tag.text = movie.genres?.map { it.name }.toString()
+            //TODO
+            //tag.text = movie.genres?.map { it.name }.toString()
 
         }
     }

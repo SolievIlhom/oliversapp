@@ -40,7 +40,8 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
             textViewFilmName.text = movie.title
             textViewAgeLimit.text = if (adult == true) "16+" else "13+"
             textViewFilmReview.text = "${runtime} REVIEWS"
-            textViewTag.text = genres?.map { it.name }.toString()
+            // TODO
+           // textViewTag.text = genres?.map { it.name }.toString()
             textViewShortlineOfFilm.text = overview
             ratingBar.rating = (voteAverage!! / 2).toFloat()
             Glide.with(requireContext())
