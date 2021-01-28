@@ -1,7 +1,7 @@
 package com.oliverworks.myapp
 
-import com.oliverworks.myapp.data.classes.Movie
+import com.oliverworks.myapp.data.pojo.moviesDetails.MovieDetails
 
 interface Router {
-    fun openMoviesDetailsFragment(movie: Movie)
+    fun openMoviesDetailsFragment(movie: MovieDetails)
 }
